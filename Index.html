@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MORIFUT（モリフット） | 岩手で気軽にフットサル・サッカーをするならMORIFUT</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome (for Icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,900;1,900&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            light: '#0f172a', /* ダークな背景 */
+                            primary: '#2563eb', /* 鮮やかなロイヤルブルー */
+                            deep: '#030712', /* 超漆黒ネイビー */
+                            cyan: '#06b6d4', /* 近未来サイバー感のライトブルー */
+                            highlight: '#facc15' /* ゴールド/イエロー */
+                        },
+                        line: '#06C755', /* LINEブランドカラー */
+                        youtube: '#FF0000', /* YouTubeブランドカラー */
+                        tiktok: '#ffffff' /* TikTokブランドカラー */
+                    },
+                    fontFamily: {
+                        sans: ['Noto Sans JP', 'sans-serif'],
+                        en: ['Montserrat', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        /* 特大ブランドロゴ背景 */
+        .giant-text-bg {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 15vw;
+            font-weight: 900;
+            line-height: 0.8;
+            letter-spacing: -0.05em;
+            text-transform: uppercase;
+            background: linear-gradient(180deg, rgba(37, 99, 235, 0.15) 0%, rgba(6, 182, 212, 0.02) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            user-select: none;
+            pointer-events: none;
+        }
+
+        .hero-pattern {
+            background-color: #030712;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(37, 99, 235, 0.25) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(6, 182, 212, 0.15) 0%, transparent 50%),
+                linear-gradient(rgba(3, 7, 18, 0.85), rgba(3, 7, 18, 0.98)),
+                url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&q=80&w=1200');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .cta-pattern {
+            background-color: #030712;
+            background-image: 
+                radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.4) 0%, transparent 70%),
+                linear-gradient(rgba(3, 7, 18, 0.9), rgba(3, 7, 18, 0.98)),
+                url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&q=80&w=1200');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* ネオンホバーエフェクト */
+        .neon-shadow {
+            box-shadow: 0 0 15px rgba(37, 99, 235, 0.3);
+            transition: all 0.3s ease;
+        }
+        .neon-shadow:hover {
+            box-shadow: 0 0 25px rgba(6, 182, 212, 0.6);
+        }
+    </style>
+</head>
+<body class="font-sans bg-slate-950 text-slate-100 antialiased selection:bg-brand-primary selection:text-white">
+
+    <!-- ナビゲーションバー -->
+    <header class="sticky top-0 z-50 bg-slate-950/90 backdrop-blur-md border-b border-slate-900 shadow-xl">
+        <div class="max-w-6xl mx-auto px-4 h-20 flex items-center justify-between">
+            <!-- ロゴ -->
+            <a href="#" class="flex items-center space-x-2 group">
+                <span class="text-3xl font-black font-en tracking-tighter text-brand-primary group-hover:text-brand-cyan transition duration-300">MORIFUT</span>
+                <span class="text-xs bg-brand-primary text-white font-bold px-2.5 py-1 rounded border border-brand-cyan/30">IWATE</span>
+            </a>
+
+            <!-- デスクトップメニュー -->
+            <nav class="hidden md:flex items-center space-x-8 font-bold tracking-wider text-sm">
+                <a href="#about" class="text-slate-400 hover:text-white transition duration-200">MORIFUTとは</a>
+                <a href="#sns" class="text-slate-400 hover:text-white transition duration-200">活動の様子</a>
+                <a href="#price" class="text-slate-400 hover:text-white transition duration-200">参加費・ルール</a>
+                <a href="#faq" class="text-slate-400 hover:text-white transition duration-200">よくある質問</a>
+                <a href="https://lin.ee/ZAr0ihf" target="_blank" rel="noopener noreferrer" class="bg-line hover:bg-[#05b34c] text-white px-6 py-3 rounded-xl font-extrabold shadow-lg hover:scale-105 transition-all duration-200 flex items-center space-x-2">
+                    <i class="fa-brands fa-line text-lg"></i>
+                    <span>予約する</span>
+                </a>
+            </nav>
+
+            <!-- モバイルメニューボタン -->
+            <button id="mobile-menu-btn" class="md:hidden text-slate-200 hover:text-brand-cyan focus:outline-none" aria-label="メニューを開く">
+                <i class="fa-solid fa-bars text-2xl" id="menu-icon"></i>
+            </button>
+        </div>
+
+        <!-- モバイルドロワーメニュー -->
+        <div id="mobile-menu" class="hidden md:hidden bg-slate-950 border-b border-slate-900 px-4 py-8 space-y-5 absolute left-0 w-full shadow-2xl transition-all duration-300">
+            <a href="#about" class="block font-bold text-slate-300 hover:text-brand-cyan py-2 border-b border-slate-900">MORIFUTとは</a>
+            <a href="#sns" class="block font-bold text-slate-300 hover:text-brand-cyan py-2 border-b border-slate-900">活動の様子</a>
+            <a href="#price" class="block font-bold text-slate-300 hover:text-brand-cyan py-2 border-b border-slate-900">参加費・ルール</a>
+            <a href="#faq" class="block font-bold text-slate-300 hover:text-brand-cyan py-2 border-b border-slate-900">よくある質問</a>
+            <a href="https://lin.ee/ZAr0ihf" target="_blank" rel="noopener noreferrer" class="w-full text-center bg-line hover:bg-[#05b34c] text-white py-4 rounded-xl font-extrabold shadow-xl transition flex items-center justify-center space-x-2">
+                <i class="fa-brands fa-line text-xl"></i>
+                <span>予約する</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- ヒーローセクション -->
+    <section class="hero-pattern py-16 lg:py-32 relative overflow-hidden flex items-center">
+        <!-- 背景文字 "MORIFUT" -->
+        <div class="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0">
+            <div class="giant-text-bg mt-12">MORIFUT</div>
+        </div>
+
+        <!-- グラデーションオーバーレイ -->
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent z-10"></div>
+        
+        <div class="max-w-6xl mx-auto px-4 relative z-20 w-full text-center lg:text-left">
+            <div class="lg:flex lg:items-center lg:justify-between gap-12">
+                <div class="lg:w-8/12 space-y-6">
+                    <div class="inline-flex items-center space-x-2 bg-brand-primary/20 text-brand-cyan px-4 py-1.5 rounded-lg text-xs font-black tracking-widest uppercase border border-brand-primary/40">
+                        <span class="flex h-2.5 w-2.5 rounded-full bg-brand-cyan animate-ping"></span>
+                        <span>IWATE SPORTS COMMUNITY</span>
+                    </div>
+                    
+                    <!-- メインコピー（改行位置を最適化。モバイルでは「フットサル・サッカーを」で改行） -->
+                    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black leading-snug tracking-tighter">
+                        岩手で気軽にフットサル・<br class="sm:hidden">サッカーをするなら<br class="hidden sm:block">
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-cyan font-en text-5xl sm:text-7xl lg:text-8xl block mt-2">MORIFUT</span>
+                    </h1>
+                    
+                    <!-- サブコピー -->
+                    <p class="text-lg sm:text-xl text-slate-200 font-black tracking-wider bg-slate-900/80 border-l-4 border-brand-cyan inline-block px-4 py-2 rounded-r-lg">
+                        経験者・未経験も大歓迎
+                    </p>
+
+                    <!-- LINEお問い合わせ（スマホ画面でも1〜2行で綺麗に収まる改行に調整） -->
+                    <div class="bg-brand-primary/10 border border-brand-primary/30 rounded-xl p-4 max-w-xl backdrop-blur-sm mx-auto lg:mx-0">
+                        <p class="text-sm sm:text-base text-brand-cyan font-bold flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-1 sm:gap-2">
+                            <span class="flex items-center gap-1.5 shrink-0">
+                                <i class="fa-solid fa-comments text-brand-highlight animate-bounce"></i>
+                                気になることは気軽に
+                            </span>
+                            <span>LINEでお問い合わせください。</span>
+                        </p>
+                    </div>
+                    
+                    <!-- 呼びかけボタンエリア -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                        <a href="https://lin.ee/ZAr0ihf" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto bg-line hover:bg-[#05b34c] text-white text-lg px-10 py-4 rounded-xl font-black shadow-2xl hover:scale-105 transition duration-200 flex items-center justify-center space-x-3">
+                            <i class="fa-brands fa-line text-2xl"></i>
+                            <span>予約する</span>
+                        </a>
+                        <a href="#about" class="w-full sm:w-auto bg-slate-900/60 hover:bg-slate-800 text-white border border-slate-700 text-md px-10 py-4 rounded-xl font-bold transition duration-200 flex items-center justify-center">
+                            詳細を見る <i class="fa-solid fa-arrow-down ml-2 text-brand-cyan"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 実績カード -->
+                <div class="lg:w-4/12 mt-12 lg:mt-0">
+                    <div class="bg-slate-900/80 backdrop-blur-md rounded-3xl p-6 md:p-8 border border-slate-800 shadow-2xl space-y-6 max-w-sm mx-auto neon-shadow">
+                        <h3 class="text-lg font-black tracking-widest border-b border-slate-800 pb-4 text-brand-cyan flex items-center justify-between">
+                            <span>MORIFUT STATS</span> <i class="fa-solid fa-bolt text-brand-highlight"></i>
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="bg-slate-950/50 border border-slate-800/80 rounded-2xl p-4 flex items-center justify-between">
+                                <span class="text-xs text-slate-400 font-bold">累計参加者数</span>
+                                <span class="text-2xl font-black text-white">500<span class="text-xs font-normal text-slate-400 ml-1">人突破</span></span>
+                            </div>
+                            <div class="bg-slate-950/50 border border-slate-800/80 rounded-2xl p-4 flex items-center justify-between">
+                                <span class="text-xs text-slate-400 font-bold">月間開催頻度</span>
+                                <span class="text-2xl font-black text-white">8<span class="text-xs font-normal text-slate-400 ml-1">回程度</span></span>
+                            </div>
+                            <div class="bg-slate-950/50 border border-slate-800/80 rounded-2xl p-4 text-center">
+                                <span class="text-xs text-slate-400 block mb-1">イベント</span>
+                                <span class="text-sm font-extrabold text-brand-highlight">
+                                    <i class="fa-solid fa-trophy mr-1"></i>月1回の大会へ参加予定！
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- コミュニティ紹介セクション (MORIFUTとは) -->
+    <section id="about" class="py-20 bg-slate-950 relative border-t border-slate-900">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-brand-primary font-black text-sm tracking-wider uppercase">ABOUT THE TEAM</span>
+                <h2 class="text-3xl sm:text-4xl font-black mt-2 text-white">MORIFUTとは？</h2>
+                <div class="w-16 h-1.5 bg-brand-primary mx-auto mt-4 rounded-full"></div>
+                <p class="text-slate-400 mt-6 leading-relaxed text-sm sm:text-base px-2">
+                    「岩手でフットサルができる場所を探している」<br class="sm:hidden">
+                    「仕事帰りに体を動かしたい」<br class="sm:hidden">
+                    「新しい仲間を作りたい」<br>
+                    そんな想いを持つ人々が集まってできた、<br class="sm:hidden">アットホームなスポーツコミュニティです。
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- 特徴1 -->
+                <div class="bg-slate-900/40 rounded-2xl p-8 hover:bg-slate-900/60 hover:shadow-2xl hover:border-brand-primary/30 border border-slate-900 transition-all duration-300 flex flex-col justify-between group">
+                    <div>
+                        <div class="w-14 h-14 bg-brand-primary/10 text-brand-primary rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:bg-brand-primary group-hover:text-white transition duration-300">
+                            <i class="fa-solid fa-heart"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-white">アットホームな雰囲気</h3>
+                        <p class="text-slate-400 leading-relaxed text-sm">
+                            初心者や女性も安心してプレーできるよう、ピッチ内での思いやりのある声かけや、和気あいあいとした雰囲気を何よりも大切にしています。
+                        </p>
+                    </div>
+                    <div class="mt-8 text-brand-cyan font-bold text-sm flex items-center">
+                        <span>未経験大歓迎</span>
+                        <i class="fa-solid fa-chevron-right ml-1 text-xs"></i>
+                    </div>
+                </div>
+
+                <!-- 特徴2 -->
+                <div class="bg-slate-900/40 rounded-2xl p-8 hover:bg-slate-900/60 hover:shadow-2xl hover:border-brand-primary/30 border border-slate-900 transition-all duration-300 flex flex-col justify-between group">
+                    <div>
+                        <div class="w-14 h-14 bg-brand-primary/10 text-brand-primary rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:bg-brand-primary group-hover:text-white transition duration-300">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-white">半数が「一人参加」から</h3>
+                        <p class="text-slate-400 leading-relaxed text-sm">
+                            最初は誰もが緊張するもの。「友達ができるかな…」という心配は不要です！参加者の約50%が一人での参加からスタートしています。
+                        </p>
+                    </div>
+                    <div class="mt-8 text-brand-cyan font-bold text-sm flex items-center">
+                        <span>一人参加も安心</span>
+                        <i class="fa-solid fa-chevron-right ml-1 text-xs"></i>
+                    </div>
+                </div>
+
+                <!-- 特徴3 -->
+                <div class="bg-slate-900/40 rounded-2xl p-8 hover:bg-slate-900/60 hover:shadow-2xl hover:border-brand-primary/30 border border-slate-900 transition-all duration-300 flex flex-col justify-between group">
+                    <div>
+                        <div class="w-14 h-14 bg-brand-primary/10 text-brand-primary rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:bg-brand-primary group-hover:text-white transition duration-300">
+                            <i class="fa-solid fa-calendar-days"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-white">月に約8回の高頻度開催</h3>
+                        <p class="text-slate-400 leading-relaxed text-sm">
+                            「予定が空いたからちょっと蹴りたい」を叶えるため、毎月約8回のペースで開催中。ライフスタイルに合わせて気軽に参加できます。
+                        </p>
+                    </div>
+                    <div class="mt-8 text-brand-cyan font-bold text-sm flex items-center">
+                        <span>いつでも参加可能</span>
+                        <i class="fa-solid fa-chevron-right ml-1 text-xs"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SNSセクション -->
+    <section id="sns" class="py-20 bg-slate-900 border-y border-slate-800">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <span class="text-brand-primary font-black text-sm tracking-wider uppercase">COMMUNITY ON VIDEO</span>
+            <h2 class="text-3xl sm:text-4xl font-black mt-2 text-white">MORIFUTの様子はこちら！</h2>
+            <div class="w-12 h-1 bg-brand-primary mx-auto mt-4 rounded-full"></div>
+            <p class="text-slate-400 mt-6 text-sm md:text-base leading-relaxed px-2">
+                普段のわくわくした活動風景やゲームの熱気を動画で発信中！<br class="hidden sm:block">
+                実際のプレーやアットホームな雰囲気を今すぐ動画でチェックしてください！
+            </p>
+            
+            <div class="grid sm:grid-cols-2 gap-6 mt-12 max-w-2xl mx-auto">
+                <!-- YouTube ボタン -->
+                <a href="https://youtube.com/@morifut?si=9UjME_WJ9ODnKd3J" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between bg-slate-950 hover:bg-slate-950/80 text-white border border-slate-800 p-6 rounded-2xl shadow-xl hover:border-red-600/30 hover:scale-105 transition duration-300 group">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-14 h-14 bg-red-600/10 text-red-600 rounded-2xl flex items-center justify-center text-2xl shrink-0 group-hover:bg-red-600 group-hover:text-white transition duration-300">
+                            <i class="fa-brands fa-youtube"></i>
+                        </div>
+                        <div class="text-left">
+                            <h4 class="font-bold text-md text-white font-en tracking-wider">YouTube</h4>
+                            <p class="text-xs text-slate-400 mt-1">試合やプレー動画を見る</p>
+                        </div>
+                    </div>
+                    <span class="text-slate-500 group-hover:translate-x-1 transition duration-200">
+                        <i class="fa-solid fa-arrow-right text-red-500"></i>
+                    </span>
+                </a>
+
+                <!-- TikTok ボタン -->
+                <a href="https://www.tiktok.com/@morifut?_r=1&_t=ZS-" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between bg-slate-950 hover:bg-slate-950/80 text-white border border-slate-800 p-6 rounded-2xl shadow-xl hover:border-slate-300/30 hover:scale-105 transition duration-300 group">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-14 h-14 bg-slate-800 text-white rounded-2xl flex items-center justify-center text-2xl shrink-0 group-hover:bg-white group-hover:text-black transition duration-300">
+                            <i class="fa-brands fa-tiktok"></i>
+                        </div>
+                        <div class="text-left">
+                            <h4 class="font-bold text-md text-white font-en tracking-wider">TikTok</h4>
+                            <p class="text-xs text-slate-400 mt-1">ショート動画やハイライトを見る</p>
+                        </div>
+                    </div>
+                    <span class="text-slate-500 group-hover:translate-x-1 transition duration-200">
+                        <i class="fa-solid fa-arrow-right text-white"></i>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 料金プラン & キャンセルルール -->
+    <section id="price" class="py-20 bg-slate-950 relative">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-brand-primary font-black text-sm tracking-wider uppercase">PRICE & RULES</span>
+                <h2 class="text-3xl sm:text-4xl font-black mt-2 text-white">参加費のご案内</h2>
+                <div class="w-16 h-1.5 bg-brand-primary mx-auto mt-4 rounded-full"></div>
+                <p class="text-slate-400 mt-6 leading-relaxed text-sm sm:text-base px-2">
+                    誰でも岩手で気軽にスポーツを楽しめるよう、<br class="sm:hidden">
+                    リーズナブルで明確なワンプライスに設定しています。
+                </p>
+            </div>
+
+            <!-- 料金カード -->
+            <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8 items-stretch">
+                <!-- 通常料金 -->
+                <div class="bg-slate-900/30 rounded-3xl p-8 shadow-xl border border-slate-900 flex flex-col justify-between relative overflow-hidden group hover:border-slate-800 hover:shadow-2xl transition duration-300">
+                    <div class="space-y-6">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs bg-slate-800 text-slate-300 font-bold px-3 py-1.5 rounded-lg border border-slate-700">通常プラン</span>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-black text-white">大人（一般）</h3>
+                            <p class="text-slate-500 text-xs mt-1">1回の開催につき</p>
+                        </div>
+                        <div class="flex items-baseline">
+                            <span class="text-2xl font-bold text-brand-cyan">¥</span>
+                            <span class="text-5xl font-black text-white tracking-tight">1,000</span>
+                            <span class="text-slate-500 ml-1 text-sm">/ 税込</span>
+                        </div>
+                        <hr class="border-slate-800">
+                        <ul class="space-y-4 text-slate-300 text-sm">
+                            <li class="flex items-center"><i class="fa-solid fa-check text-brand-cyan mr-3"></i> ビブス（ゼッケン）無料貸出</li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-brand-cyan mr-3"></i> ボール貸出・コート代込み</li>
+                            <li class="flex items-center text-red-400 font-bold"><i class="fa-solid fa-triangle-exclamation mr-3"></i> 当日キャンセル料100%</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 学生割引 -->
+                <div class="bg-slate-900/40 rounded-3xl p-8 shadow-xl border-2 border-brand-primary flex flex-col justify-between relative overflow-hidden group hover:shadow-2xl transition duration-300">
+                    <div class="absolute top-0 right-0 bg-brand-primary text-white text-xs font-black px-4 py-1.5 rounded-bl-xl tracking-wider">
+                        学生を応援！
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs bg-brand-primary/10 text-brand-cyan font-bold px-3 py-1.5 rounded-lg border border-brand-primary/20">学割プラン</span>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-black text-white">学生割引</h3>
+                            <p class="text-slate-500 text-xs mt-1">1回の開催につき（学生証のご提示をお願いします）</p>
+                        </div>
+                        <div class="flex items-baseline">
+                            <span class="text-2xl font-bold text-brand-cyan">¥</span>
+                            <span class="text-5xl font-black text-brand-cyan tracking-tight">500</span>
+                            <span class="text-slate-500 ml-1 text-sm">/ 税込</span>
+                        </div>
+                        <hr class="border-slate-800">
+                        <ul class="space-y-4 text-slate-300 text-sm">
+                            <li class="flex items-center"><i class="fa-solid fa-check text-brand-cyan mr-3"></i> 大人同様のサービスが半額！</li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-brand-cyan mr-3"></i> 運動不足解消・サークル代わりに</li>
+                            <li class="flex items-center text-red-400 font-bold"><i class="fa-solid fa-triangle-exclamation mr-3"></i> 当日キャンセル料100%</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 同時予約特典 -->
+            <div class="max-w-4xl mx-auto mt-10">
+                <div class="bg-gradient-to-r from-brand-deep via-slate-900 to-brand-primary text-white rounded-3xl p-6 md:p-8 shadow-xl border border-slate-800 relative overflow-hidden">
+                    <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
+                        <div class="space-y-2 text-center md:text-left">
+                            <div class="inline-block bg-brand-highlight text-slate-950 text-xs font-black px-3.5 py-1.5 rounded-lg uppercase tracking-wider">
+                                同時予約キャンペーン！
+                            </div>
+                            <h3 class="text-xl sm:text-2xl font-black text-white">
+                                3名以上の同時予約で合計から<br class="sm:hidden">
+                                <span class="text-brand-highlight text-2xl sm:text-3xl font-black underline decoration-brand-highlight">500円OFF!</span>
+                            </h3>
+                            <p class="text-slate-300 text-sm">
+                                友人や同僚、サークル仲間を誘って一緒にお越しください！
+                            </p>
+                        </div>
+                        <div class="w-full md:w-auto shrink-0 text-center">
+                            <a href="https://lin.ee/ZAr0ihf" target="_blank" rel="noopener noreferrer" class="w-full md:w-auto inline-flex items-center justify-center bg-line hover:bg-[#05b34c] text-white font-black px-8 py-4 rounded-xl hover:scale-105 transition duration-200 shadow-md">
+                                <i class="fa-brands fa-line text-xl mr-2"></i> 予約する
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- キャンセル警告カード -->
+            <div class="max-w-4xl mx-auto mt-6">
+                <div class="bg-red-950/20 border-2 border-red-900/40 rounded-2xl p-6 flex flex-col md:flex-row items-start md:items-center gap-4">
+                    <div class="w-12 h-12 bg-red-900/20 text-red-500 rounded-xl flex items-center justify-center text-xl shrink-0 border border-red-900/40 animate-pulse">
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                    </div>
+                    <div class="space-y-1">
+                        <h4 class="font-black text-red-500 text-md">【超重要】当日キャンセル・ドタキャンについて</h4>
+                        <p class="text-xs md:text-sm text-slate-300 leading-relaxed">
+                            コートの手配や人数調整を行っているため、当日のキャンセルは固くお断りしております。<br>
+                            万が一、当日キャンセルをされた場合は、<strong>キャンセル料100%（参加費全額）</strong>を頂戴いたします。皆様が快適にプレーできるよう、スケジュールを確定のうえ、ご予約をお願いいたします。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- よくある質問（FAQ） -->
+    <section id="faq" class="py-20 bg-slate-900 border-t border-slate-800">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-brand-primary font-black text-sm tracking-wider uppercase">FAQ</span>
+                <h2 class="text-3xl sm:text-4xl font-black mt-2 text-white">よくある質問</h2>
+                <div class="w-16 h-1.5 bg-brand-primary mx-auto mt-4 rounded-full"></div>
+                <p class="text-slate-400 mt-6 text-sm sm:text-base">
+                    参加をご検討中の方から、特によくいただく質問です。
+                </p>
+            </div>
+
+            <!-- アコーディオン -->
+            <div class="space-y-4">
+                <!-- Q1 -->
+                <div class="border border-slate-800 rounded-2xl overflow-hidden bg-slate-950 transition duration-200">
+                    <button class="faq-btn w-full px-6 py-5 text-left font-bold flex items-center justify-between bg-slate-900/40 hover:bg-slate-900/60 transition duration-200 text-slate-200" aria-expanded="false">
+                        <span class="flex items-center gap-3">
+                            <span class="bg-brand-primary text-white w-7 h-7 rounded-lg flex items-center justify-center text-sm font-black shrink-0">Q</span>
+                            サッカー未経験でも大丈夫？
+                        </span>
+                        <i class="fa-solid fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 py-5 bg-slate-950 border-t border-slate-900 text-slate-400 leading-relaxed text-sm">
+                        <span class="font-bold text-brand-cyan mr-1">A. 大歓迎です！</span><br class="mb-1">
+                        MORIFUTは未経験者・初心者の方が安心して楽しめる雰囲気を大切にしています。プレー中の激しい接触は禁止しており、お互いに優しい声掛けを心掛けているので、初めての方も安心してご参加ください！
+                    </div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="border border-slate-800 rounded-2xl overflow-hidden bg-slate-950 transition duration-200">
+                    <button class="faq-btn w-full px-6 py-5 text-left font-bold flex items-center justify-between bg-slate-900/40 hover:bg-slate-900/60 transition duration-200 text-slate-200" aria-expanded="false">
+                        <span class="flex items-center gap-3">
+                            <span class="bg-brand-primary text-white w-7 h-7 rounded-lg flex items-center justify-center text-sm font-black shrink-0">Q</span>
+                            一人参加でも大丈夫？
+                        </span>
+                        <i class="fa-solid fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 py-5 bg-slate-950 border-t border-slate-900 text-slate-400 leading-relaxed text-sm">
+                        <span class="font-bold text-brand-cyan mr-1">A. 参加者の約50%が一人参加です。</span><br class="mb-1">
+                        最初は緊張するかもしれませんが、気さくなメンバーばかりですぐに馴染むことができます。ゲームを通じて声を掛け合っているうちに、自然に打ち解けて新しい友達ができています！
+                    </div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="border border-slate-800 rounded-2xl overflow-hidden bg-slate-950 transition duration-200">
+                    <button class="faq-btn w-full px-6 py-5 text-left font-bold flex items-center justify-between bg-slate-900/40 hover:bg-slate-900/60 transition duration-200 text-slate-200" aria-expanded="false">
+                        <span class="flex items-center gap-3">
+                            <span class="bg-brand-primary text-white w-7 h-7 rounded-lg flex items-center justify-center text-sm font-black shrink-0">Q</span>
+                            スパイクは必要？
+                        </span>
+                        <i class="fa-solid fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 py-5 bg-slate-950 border-t border-slate-900 text-slate-400 leading-relaxed text-sm">
+                        <span class="font-bold text-brand-cyan mr-1">A. 不要です。</span><br class="mb-1">
+                        動きやすい服装と、運動しやすい靴（スニーカーやトレーニングシューズ）でお越しください。怪我の防止のため、スパイクのご使用はご遠慮いただいております。
+                    </div>
+                </div>
+
+                <!-- Q4 -->
+                <div class="border border-slate-800 rounded-2xl overflow-hidden bg-slate-950 transition duration-200">
+                    <button class="faq-btn w-full px-6 py-5 text-left font-bold flex items-center justify-between bg-slate-900/40 hover:bg-slate-900/60 transition duration-200 text-slate-200" aria-expanded="false">
+                        <span class="flex items-center gap-3">
+                            <span class="bg-brand-primary text-white w-7 h-7 rounded-lg flex items-center justify-center text-sm font-black shrink-0">Q</span>
+                            雨天時はどうなりますか？
+                        </span>
+                        <i class="fa-solid fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 py-5 bg-slate-950 border-t border-slate-900 text-slate-400 leading-relaxed text-sm">
+                        <span class="font-bold text-brand-cyan mr-1">A. 中止の場合はLINEで事前に連絡します。</span><br class="mb-1">
+                        屋外コートの場合、雨で中止になることがございます。その際は開催時刻の約1〜2時間前までに、公式LINEを通じて参加中止・延期のご連絡を一斉に送信いたします。
+                    </div>
+                </div>
+
+                <!-- Q5 -->
+                <div class="border border-slate-800 rounded-2xl overflow-hidden bg-slate-950 transition duration-200">
+                    <button class="faq-btn w-full px-6 py-5 text-left font-bold flex items-center justify-between bg-slate-900/40 hover:bg-slate-900/60 transition duration-200 text-slate-200" aria-expanded="false">
+                        <span class="flex items-center gap-3">
+                            <span class="bg-brand-primary text-white w-7 h-7 rounded-lg flex items-center justify-center text-sm font-black shrink-0">Q</span>
+                            女性でも参加できますか？
+                        </span>
+                        <i class="fa-solid fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 py-5 bg-slate-950 border-t border-slate-900 text-slate-400 leading-relaxed text-sm">
+                        <span class="font-bold text-brand-cyan mr-1">A. もちろん参加可能です！</span><br class="mb-1">
+                        女性メンバーも複数活躍しており、男女混合でも安全に楽しめるよう「強いシュートの制限」など、怪我なく全員が楽しめる独自の思いやりルールを設けています。
+                    </div>
+                </div>
+
+                <!-- Q6 -->
+                <div class="border border-slate-800 rounded-2xl overflow-hidden bg-slate-950 transition duration-200">
+                    <button class="faq-btn w-full px-6 py-5 text-left font-bold flex items-center justify-between bg-slate-900/40 hover:bg-slate-900/60 transition duration-200 text-slate-200" aria-expanded="false">
+                        <span class="flex items-center gap-3">
+                            <span class="bg-red-500 text-white w-7 h-7 rounded-lg flex items-center justify-center text-sm font-black shrink-0">Q</span>
+                            キャンセルの連絡はいつまで？
+                        </span>
+                        <i class="fa-solid fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 py-5 bg-slate-950 border-t border-slate-900 text-slate-400 leading-relaxed text-sm">
+                        <span class="font-bold text-red-500 mr-1">A. 前日までのご連絡をお願いいたします。当日のキャンセルはキャンセル料100%が発生します。</span><br class="mb-1">
+                        円滑なゲームの人数調整やコート手配のため、ドタキャンはご遠慮いただいております。やむを得ない事情で参加できなくなった場合は、必ず前日までにLINEでご連絡ください。
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター・最終CTA -->
+    <section class="cta-pattern py-20 text-white relative border-t border-slate-900">
+        <div class="max-w-4xl mx-auto px-4 text-center space-y-8 relative z-10">
+            <h2 class="text-3xl md:text-5xl font-black">
+                開催スケジュールをLINEで確認して、<br class="sm:hidden">
+                今すぐエントリー！
+            </h2>
+            
+            <div class="space-y-4">
+                <p class="text-slate-300 text-lg max-w-xl mx-auto font-light leading-relaxed px-2">
+                    MORIFUT公式LINEから「次回の開催スケジュール」を手軽に確認できます。
+                </p>
+                <div class="bg-slate-950/80 border border-slate-800 inline-block px-5 py-3 rounded-xl max-w-lg mx-auto">
+                    <p class="text-brand-cyan text-sm sm:text-base font-bold flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2">
+                        <span class="flex items-center gap-1.5 shrink-0">
+                            <i class="fa-solid fa-comments text-brand-highlight"></i>
+                            気になることは気軽に
+                        </span>
+                        <span>LINEでお問い合わせください。</span>
+                    </p>
+                </div>
+            </div>
+            
+            <div class="flex flex-col items-center space-y-4 pt-2">
+                <!-- 予約ボタン -->
+                <a href="https://lin.ee/ZAr0ihf" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center bg-line hover:bg-[#05b34c] text-white text-xl font-black px-12 py-5 rounded-2xl shadow-2xl hover:scale-105 transition duration-200 space-x-3 w-full sm:w-auto">
+                    <i class="fa-brands fa-line text-3xl"></i>
+                    <span>予約する</span>
+                </a>
+                <p class="text-xs text-slate-400">
+                    ※タップすると公式LINEが開き、すぐに予約・お問い合わせができます。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-[#030712] text-slate-500 py-16 border-t border-slate-900">
+        <div class="max-w-6xl mx-auto px-4 text-center space-y-6">
+            <div class="flex justify-center items-center space-x-2">
+                <span class="text-3xl font-black font-en tracking-tighter text-white">MORIFUT</span>
+                <span class="text-xs bg-brand-primary text-white px-2.5 py-1 rounded font-bold">IWATE</span>
+            </div>
+            <p class="text-sm text-slate-400 max-w-md mx-auto leading-relaxed px-2">
+                岩手のフットサル & サッカーコミュニティ MORIFUT。初心者・一人での参加者も、熱く、そして笑顔でボールを蹴る最高の場所を提供します。
+            </p>
+            <div class="flex justify-center space-x-6 text-sm font-bold">
+                <a href="#about" class="hover:text-white transition">MORIFUTとは</a>
+                <a href="#sns" class="hover:text-white transition">活動の様子</a>
+                <a href="#price" class="hover:text-white transition">参加費 & ルール</a>
+                <a href="#faq" class="hover:text-white transition">よくある質問</a>
+            </div>
+            <p class="text-xs text-slate-600 pt-8 border-t border-slate-900">
+                &copy; <span id="current-year"></span> MORIFUT Community. All Rights Reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- スクリプト制御 -->
+    <script>
+        // 著作権年表示の自動更新
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // モバイルメニューの開閉制御
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            const isHidden = mobileMenu.classList.contains('hidden');
+            if (isHidden) {
+                mobileMenu.classList.remove('hidden');
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-xmark');
+            } else {
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars');
+            }
+        });
+
+        // リンクをクリックした際にモバイルメニューを閉じる
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars');
+            });
+        });
+
+        // FAQアコーディオンの制御
+        const faqBtns = document.querySelectorAll('.faq-btn');
+
+        faqBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const content = btn.nextElementSibling;
+                const icon = btn.querySelector('.fa-chevron-down');
+                const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+
+                if (isExpanded) {
+                    btn.setAttribute('aria-expanded', 'false');
+                    content.classList.add('hidden');
+                    icon.classList.remove('rotate-180');
+                } else {
+                    btn.setAttribute('aria-expanded', 'true');
+                    content.classList.remove('hidden');
+                    icon.classList.add('rotate-180');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
+```
